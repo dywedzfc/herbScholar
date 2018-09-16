@@ -1,4 +1,4 @@
-# baicao-scholar
+# herb-scholar
 
 > A Vue.js project
 
