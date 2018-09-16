@@ -39,8 +39,17 @@ const get88dusMenuList = $ => {
 
 module.exports.get88dusBookDetailsSearch = function (query, callback) {
   let url = query.url
-  return axios(url).then(response => {
-    const $ = cheerio.load(response.data)
+  return axios(url, {
+    encoding: null
+  }).then(response => {
+    const $ = cheerio.load(response.data, {
+      headers: {
+        referer: 'https://www.88dus.com/',
+        host: 'www.88dus.com'
+      },
+      ignoreWhitespace: true,
+      xmlMode: true
+    })
     let bookDetails = {}
     bookDetails.introduction = get88dusIntroductionInfo($)
     bookDetails.menuList = get88dusMenuList($)
